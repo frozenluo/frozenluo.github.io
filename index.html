@@ -10,13 +10,12 @@
     		75%{-webkit-transform:rotate(270deg)}
     		100%{-webkit-transform:rotate(360deg)}
     	}
-
     	
         #wrap { display:table; height: 100%; width: 100%;}
         #cell { display:table-cell; vertical-align:middle;}
         #mask {position: absolute; display: none;height: 100%; width: 100%; z-index: 99; background: #aaa; opacity: 0.1;}
         #loading {
-        	display: none; 
+        	display: block; 
         	margin-left: -27px; 
         	margin-top: -27px; 
         	height: 54px; width: 54px; 
@@ -43,50 +42,61 @@
     </style>
 </head>
 <body>
-<div id="mask">
+<!-- <div id="mask"> -->
 </div>
 <div id="loading"></div>
 <div id="wrap">
     <div id="cell">
-        <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg" controls>
+        <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
             <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
         </video>
     </div>
 </div>
 <script type="text/javascript">
     var loading = document.getElementById("loading");
-    var mask = document.getElementById("mask");
+    // var mask = document.getElementById("mask");
     var cell = document.getElementById("cell");
     var video = document.getElementById("video_id");
+
+
+    function toggleControls(remove) {
+    	if(remove && video.hasAttribute("controls")) {
+			video.removeAttribute("controls");
+    	}else {
+			video.setAttribute("controls","controls");
+		}
+    }
+
     video.addEventListener("loadstart", function () {
         loading.style.display = "block";
-        mask.style.display = "block";
+        // mask.style.display = "block";
     });
     video.addEventListener("stalled", function () {
         loading.style.display = "block";
-        mask.style.display = "block";
+        // mask.style.display = "block";
     });
     video.addEventListener("abort", function () {
         loading.style.display = "block";
-        mask.style.display = "block";
+        // mask.style.display = "block";
     });
     video.addEventListener("error", function () {
         loading.style.display = "block";
-        mask.style.display = "block";
+        // mask.style.display = "block";
     });
     video.addEventListener("canplay", function() {
+        toggleControls(false);
         loading.style.display = "none";
-        mask.style.display = "none";
+        // mask.style.display = "none";
         cell.style.display = "table-cell";
     });
     video.addEventListener("play", function() {
         loading.style.display = "none";
-        mask.style.display = "none";
+        // mask.style.display = "none";
         cell.style.display = "table-cell";
     });
     video.addEventListener("timeupdate", function() {
         loading.style.display = "none";
-        mask.style.display = "none";
+        // mask.style.display = "none";
         cell.style.display = "table-cell";
     });
 </script>
