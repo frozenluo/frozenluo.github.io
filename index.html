@@ -48,7 +48,9 @@
             position: absolute;
             width: 100%;
             -webkit-transform: translateY(-50%);
+            z-index: 99;
         }
+        
     </style>
 </head>
 <body>
@@ -57,7 +59,7 @@
         <div id="content">
             <img id="video-poster" src="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
             <div id="loading"></div>
-            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
+            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg" looping>
                 <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
             </video>
         </div>
@@ -65,11 +67,9 @@
 </div>
 <script type="text/javascript">
     var loading = document.getElementById("loading");
-    // var mask = document.getElementById("mask");
     var cell = document.getElementById("cell");
     var video = document.getElementById("video_id");
     var poster = document.getElementById("video-poster");
-
 
     function toggleControls(remove) {
     	if(remove && video.hasAttribute("controls")) {
@@ -79,56 +79,55 @@
 		}
     }
     
-    function monitor() {
-        if (video.readyState >= video.HAVE_FUTURE_DATA) {
-            console.log('video can play!');
-            toggleControls(false);
-            loading.style.display = "none";
-            cell.style.display = "table-cell";
-            video.style.visibility = "visible";
-            poster.style.visibility = "hidden";
-        } else {
-            setTimeout(monitor, 50);
-        }
-    }
-    
-    monitor();
+//    function monitor() {
+//        rs.innerHTML = video.readyState;
+//        if (video.readyState >= video.HAVE_FUTURE_DATA) {
+//            loading.style.display = "none";
+//            video.style.visibility = "visible";
+//            poster.style.visibility = "hidden";
+//            toggleControls(false);
+//        } else {
+//            loading.style.display = "block";
+//        }
+//        setTimeout(monitor, 50);
+//    }
+//    
+//    monitor();
 
     video.addEventListener("loadstart", function () {
         loading.style.display = "block";
         // mask.style.display = "block";
     });
-    video.addEventListener("stalled", function () {
-        loading.style.display = "block";
-        // mask.style.display = "block";
-    });
+//    video.addEventListener("stalled", function () {
+//        loading.style.display = "block";
+//        // mask.style.display = "block";
+//    });
     video.addEventListener("abort", function () {
         loading.style.display = "block";
-        // mask.style.display = "block";
     });
     video.addEventListener("error", function () {
         loading.style.display = "block";
-        // mask.style.display = "block";
     });
-//    video.addEventListener("canplay", function() {
-//        toggleControls(false);
-//        loading.style.display = "none";
-//        // mask.style.display = "none";
-//        cell.style.display = "table-cell";
-////        video.style.visibility = "visible";
-//        video.style.display = "block";
-//        poster.style.visibility = "hidden";
-//    });
-    video.addEventListener("play", function() {
+    video.addEventListener("canplay", function() {
+        toggleControls(false);
         loading.style.display = "none";
-        // mask.style.display = "none";
         cell.style.display = "table-cell";
+        video.style.visibility = "visible";
+        poster.style.visibility = "hidden";
+    });
+    video.addEventListener("play", function() {
+        loading.style.display = "block";
+//        cell.style.display = "table-cell";
     });
     video.addEventListener("timeupdate", function() {
         loading.style.display = "none";
-        // mask.style.display = "none";
         cell.style.display = "table-cell";
     });
+//    video.addEventListener("playing", function() {
+//        loading.style.display = "none";
+//        poster.style.display = "none";
+//    });
+    
 </script>
 </body>
 </html>
