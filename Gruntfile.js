@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 		connect: {
 			options: {
 				hostname: '0.0.0.0', //Setting it to '*' will make the server accessible from anywhere.
-				port: 9000,
+				port: 9001,
 				open: true,
 				keepalive: true
 			},
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 				options: {
 					base: '.',
 					open: {
-						target: 'http://localhost:9000/index.html'
+						target: 'http://localhost:9001/index.html'
 					}
 				}
 			}

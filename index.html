@@ -29,27 +29,38 @@
 			-webkit-animation-iteration-count: infinite;
 			-webkit-backface-visibility: hidden;
 		}
+        #content,
         .intro-video {
             width: 100%;
             height: 100%;
         }
         body {background: #2A2A2A;}
-        video {
-            input {
-                display: none;
-            }
+        video { visibility: hidden;}
+        video input { display: none; }
+        
+        #poster {
+            height: 270px;
+            width: 480px;
+        }
+        
+        #video-poster {
+            top: 50%;
+            position: absolute;
+            width: 100%;
+            -webkit-transform: translateY(-50%);
         }
     </style>
 </head>
 <body>
-<!-- <div id="mask"> -->
-</div>
-<div id="loading"></div>
 <div id="wrap">
     <div id="cell">
-        <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
-            <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
-        </video>
+        <div id="content">
+            <img id="video-poster" src="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
+            <div id="loading"></div>
+            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
+                <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
+            </video>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -57,6 +68,7 @@
     // var mask = document.getElementById("mask");
     var cell = document.getElementById("cell");
     var video = document.getElementById("video_id");
+    var poster = document.getElementById("video-poster");
 
 
     function toggleControls(remove) {
@@ -66,6 +78,21 @@
 			video.setAttribute("controls","controls");
 		}
     }
+    
+    function monitor() {
+        if (video.readyState >= video.HAVE_FUTURE_DATA) {
+            console.log('video can play!');
+            toggleControls(false);
+            loading.style.display = "none";
+            cell.style.display = "table-cell";
+            video.style.visibility = "visible";
+            poster.style.visibility = "hidden";
+        } else {
+            setTimeout(monitor, 50);
+        }
+    }
+    
+    monitor();
 
     video.addEventListener("loadstart", function () {
         loading.style.display = "block";
@@ -83,12 +110,15 @@
         loading.style.display = "block";
         // mask.style.display = "block";
     });
-    video.addEventListener("canplay", function() {
-        toggleControls(false);
-        loading.style.display = "none";
-        // mask.style.display = "none";
-        cell.style.display = "table-cell";
-    });
+//    video.addEventListener("canplay", function() {
+//        toggleControls(false);
+//        loading.style.display = "none";
+//        // mask.style.display = "none";
+//        cell.style.display = "table-cell";
+////        video.style.visibility = "visible";
+//        video.style.display = "block";
+//        poster.style.visibility = "hidden";
+//    });
     video.addEventListener("play", function() {
         loading.style.display = "none";
         // mask.style.display = "none";
