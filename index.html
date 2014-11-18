@@ -13,8 +13,8 @@
 
         #wrap { display:table; height: 100%; width: 100%;}
         #cell { display:table-cell; vertical-align:middle;}
-        #mask {position: absolute; display: none;height: 100%; width: 100%; z-index: 99; background: #aaa; opacity: 0.1;}
-        #loading {
+        /*#mask {position: absolute; display: none;height: 100%; width: 100%; z-index: 99; background: #aaa; opacity: 0.1;}*/
+        /*#loading {
         	display: none; 
         	margin-left: -27px; 
         	margin-top: -27px; 
@@ -28,7 +28,7 @@
 			-webkit-animation-timing-function: linear;
 			-webkit-animation-iteration-count: infinite;
 			-webkit-backface-visibility: hidden;
-		}
+		}*/
         #content,
         .intro-video {
             width: 100%;
@@ -47,9 +47,9 @@
 <div id="wrap">
     <div id="cell">
         <div id="content">
-            <div id="loading"></div>
-            <div id="mask"></div>
-            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg"  looping controls>
+            <!-- <div id="loading"></div> -->
+            <!-- <div id="mask"></div> -->
+            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg"  looping controls="controls" preload="auto">
                 <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
             </video>
         </div>
@@ -58,42 +58,42 @@
 
 </body>
 <script type="text/javascript">
-    var loading = document.getElementById("loading");
-    var cell = document.getElementById("cell");
-    var video = document.getElementById("video_id");
+  //   var loading = document.getElementById("loading");
+  //   var cell = document.getElementById("cell");
+  //   var video = document.getElementById("video_id");
 
-  //   function toggleControls(remove) {
-  //   	if(remove && video.hasAttribute("controls")) {
-		// 	video.removeAttribute("controls");
-  //   	}else {
-		// 	video.setAttribute("controls","controls");
-		// }
-  //   }
+  // //   function toggleControls(remove) {
+  // //   	if(remove && video.hasAttribute("controls")) {
+		// // 	video.removeAttribute("controls");
+  // //   	}else {
+		// // 	video.setAttribute("controls","controls");
+		// // }
+  // //   }
 
-    video.addEventListener("loadstart", function () {
-        loading.style.display = "block";
-    });
-    video.addEventListener("stalled", function () {
-        loading.style.display = "block";
-    });
-    video.addEventListener("abort", function () {
-        loading.style.display = "block";
-    });
-    video.addEventListener("error", function () {
-        loading.style.display = "block";
-    });
-    video.addEventListener("canplay", function() {
-        // toggleControls(false);
-        loading.style.display = "none";
-        cell.style.display = "table-cell";
-    });
-    video.addEventListener("play", function() {
-        loading.style.display = "block";
-    });
-    video.addEventListener("timeupdate", function() {
-        loading.style.display = "none";
-        cell.style.display = "table-cell";
-    });
+  //   video.addEventListener("loadstart", function () {
+  //       loading.style.display = "block";
+  //   });
+  //   video.addEventListener("stalled", function () {
+  //       loading.style.display = "block";
+  //   });
+  //   video.addEventListener("abort", function () {
+  //       loading.style.display = "block";
+  //   });
+  //   video.addEventListener("error", function () {
+  //       loading.style.display = "block";
+  //   });
+  //   video.addEventListener("canplay", function() {
+  //       // toggleControls(false);
+  //       loading.style.display = "none";
+  //       cell.style.display = "table-cell";
+  //   });
+  //   video.addEventListener("play", function() {
+  //       loading.style.display = "block";
+  //   });
+  //   video.addEventListener("timeupdate", function() {
+  //       loading.style.display = "none";
+  //       cell.style.display = "table-cell";
+  //   });
     
 </script>    
     
