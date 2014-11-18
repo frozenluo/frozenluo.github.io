@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name=viewport content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name=viewport content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <style type="text/css">
     	@-webkit-keyframes loading {
     		0% {-webkit-transform: rotate(0deg);}
@@ -34,74 +34,48 @@
             width: 100%;
             height: 100%;
         }
-        body {background: #2A2A2A;}
-        video { visibility: hidden;}
-        video input { display: none; }
+        body {background: #2A2A2A; overflow: hidden;}
+/*        video { visibility: hidden;}*/
         
         #poster {
-            height: 270px;
-            width: 480px;
+            height: auto;
+            width: 80%;
         }
-        
-        #video-poster {
-            top: 50%;
-            position: absolute;
-            width: 100%;
-            -webkit-transform: translateY(-50%);
-            z-index: 99;
-        }
-        
     </style>
 </head>
 <body>
 <div id="wrap">
     <div id="cell">
         <div id="content">
-            <img id="video-poster" src="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg">
             <div id="loading"></div>
-            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg" looping>
+            <div id="mask"></div>
+            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg"  looping controls>
                 <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
             </video>
         </div>
     </div>
 </div>
+
+</body>
 <script type="text/javascript">
     var loading = document.getElementById("loading");
     var cell = document.getElementById("cell");
     var video = document.getElementById("video_id");
-    var poster = document.getElementById("video-poster");
 
-    function toggleControls(remove) {
-    	if(remove && video.hasAttribute("controls")) {
-			video.removeAttribute("controls");
-    	}else {
-			video.setAttribute("controls","controls");
-		}
-    }
-    
-//    function monitor() {
-//        rs.innerHTML = video.readyState;
-//        if (video.readyState >= video.HAVE_FUTURE_DATA) {
-//            loading.style.display = "none";
-//            video.style.visibility = "visible";
-//            poster.style.visibility = "hidden";
-//            toggleControls(false);
-//        } else {
-//            loading.style.display = "block";
-//        }
-//        setTimeout(monitor, 50);
-//    }
-//    
-//    monitor();
+  //   function toggleControls(remove) {
+  //   	if(remove && video.hasAttribute("controls")) {
+		// 	video.removeAttribute("controls");
+  //   	}else {
+		// 	video.setAttribute("controls","controls");
+		// }
+  //   }
 
     video.addEventListener("loadstart", function () {
         loading.style.display = "block";
-        // mask.style.display = "block";
     });
-//    video.addEventListener("stalled", function () {
-//        loading.style.display = "block";
-//        // mask.style.display = "block";
-//    });
+    video.addEventListener("stalled", function () {
+        loading.style.display = "block";
+    });
     video.addEventListener("abort", function () {
         loading.style.display = "block";
     });
@@ -109,25 +83,18 @@
         loading.style.display = "block";
     });
     video.addEventListener("canplay", function() {
-        toggleControls(false);
+        // toggleControls(false);
         loading.style.display = "none";
         cell.style.display = "table-cell";
-        video.style.visibility = "visible";
-        poster.style.visibility = "hidden";
     });
     video.addEventListener("play", function() {
         loading.style.display = "block";
-//        cell.style.display = "table-cell";
     });
     video.addEventListener("timeupdate", function() {
         loading.style.display = "none";
         cell.style.display = "table-cell";
     });
-//    video.addEventListener("playing", function() {
-//        loading.style.display = "none";
-//        poster.style.display = "none";
-//    });
     
-</script>
-</body>
+</script>    
+    
 </html>
