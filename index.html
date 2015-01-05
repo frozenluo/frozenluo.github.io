@@ -2,98 +2,26 @@
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <style type="text/css">
-    	@-webkit-keyframes loading {
-    		0% {-webkit-transform: rotate(0deg);}
-    		25% {-webkit-transform: rotate(90deg);}
-    		50% {-webkit-transform: rotate(180deg);}
-    		75%{-webkit-transform:rotate(270deg)}
-    		100%{-webkit-transform:rotate(360deg)}
-    	}
-
-        #wrap { display:table; height: 100%; width: 100%;}
-        #cell { display:table-cell; vertical-align:middle;}
-        /*#mask {position: absolute; display: none;height: 100%; width: 100%; z-index: 99; background: #aaa; opacity: 0.1;}*/
-        /*#loading {
-        	display: none; 
-        	margin-left: -27px; 
-        	margin-top: -27px; 
-        	height: 54px; width: 54px; 
-        	position: absolute; 
-        	top: 50%; left: 50%; 
-        	z-index: 100; 
-        	background: url(enter-loading.png) no-repeat; 
-	        -webkit-animation-name: loading;
-			-webkit-animation-duration: .9s;
-			-webkit-animation-timing-function: linear;
-			-webkit-animation-iteration-count: infinite;
-			-webkit-backface-visibility: hidden;
-		}*/
-        #content,
-        .intro-video {
-            width: 100%;
-            height: 100%;
-        }
-        body {background: #2A2A2A; overflow: hidden;}
-/*        video { visibility: hidden;}*/
-        
-        #poster {
-            height: auto;
-            width: 80%;
-        }
-    </style>
 </head>
 <body>
-<div id="wrap">
-    <div id="cell">
-        <div id="content">
-            <!-- <div id="loading"></div> -->
-            <!-- <div id="mask"></div> -->
-            <video id="video_id" class="intro-video" poster="http://vimg1.ws.126.net/image/snapshot/2014/11/2/L/VA978RO2L.jpg"  looping controls="controls" preload="auto">
-                <source src="http://flv.bn.netease.com/videolib3/1411/03/lXiTA5225/SD/lXiTA5225-mobile.mp4" type="video/mp4" />
-            </video>
-        </div>
-    </div>
-</div>
+
+<div id="event"></div>
 
 </body>
 <script type="text/javascript">
-  //   var loading = document.getElementById("loading");
-  //   var cell = document.getElementById("cell");
-  //   var video = document.getElementById("video_id");
+var element = document.getElementById('event');
 
-  // //   function toggleControls(remove) {
-  // //   	if(remove && video.hasAttribute("controls")) {
-		// // 	video.removeAttribute("controls");
-  // //   	}else {
-		// // 	video.setAttribute("controls","controls");
-		// // }
-  // //   }
+  document.addEventListener('touchstart', function (e) {
+    element.innerHtml = 'touchstart';
+  });
 
-  //   video.addEventListener("loadstart", function () {
-  //       loading.style.display = "block";
-  //   });
-  //   video.addEventListener("stalled", function () {
-  //       loading.style.display = "block";
-  //   });
-  //   video.addEventListener("abort", function () {
-  //       loading.style.display = "block";
-  //   });
-  //   video.addEventListener("error", function () {
-  //       loading.style.display = "block";
-  //   });
-  //   video.addEventListener("canplay", function() {
-  //       // toggleControls(false);
-  //       loading.style.display = "none";
-  //       cell.style.display = "table-cell";
-  //   });
-  //   video.addEventListener("play", function() {
-  //       loading.style.display = "block";
-  //   });
-  //   video.addEventListener("timeupdate", function() {
-  //       loading.style.display = "none";
-  //       cell.style.display = "table-cell";
-  //   });
+  document.addEventListener('touchmove', function (e) {
+    element.innerHtml = 'touchmove';
+  });
+
+  document.addEventListener('touchend', function (e) {
+    element.innerHtml = 'touchend';
+  });
     
 </script>    
     
