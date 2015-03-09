@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style type="text/css">
+    	#c {
+    		height: 200px;
+    		width: 200px;
+    		positioon: absolute;
+    		left: 0;
+    		top: 0;
+    	}
+
+    	#v {
+    		display: block;
+    	}
+
+    	#play {
+    		position: absolute;
+    		top: 30%;
+    		left: 30%;
+    	}
+    </style>
+</head>
+<body>
+	<canvas id="c"></canvas>
+	<video id="v">
+		<source src="http://flv.bn.netease.com/videolib3/1410/22/XCHmD8975/SD/XCHmD8975-mobile.mp4" type="video/mp4" />
+	</video>
+	<input type="button" id="play" value="play">
+
+</body>
+
+<script type="text/javascript">
+	document.addEventListener ('DOMContentLoaded', function(){
+		var canvas = document.getElementById('c');
+		var video = document.getElementById('v');
+		var context = canvas.getContext('2d');
+		video.addEventListener('play',function(){
+			draw(video, context, 654, 368);
+		}, false);
+		var pbutton = document.getElementById('play');
+		pbutton.onclick = function(){
+			video.play();
+		}
+
+		function   draw(v,c,w,h) {
+			if(v.paused || v.ended) return false;
+		    c.drawImage(v,0,0,w,h);
+		    setTimeout(draw,20,v,c,w,h);
+		}
+	});
+</script>
+</html>
