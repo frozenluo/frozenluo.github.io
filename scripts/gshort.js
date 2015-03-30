@@ -1,4 +1,4 @@
-$().ready(function(){
+$(function(){
 	$('#auth').click(function(){
 		var userToken = $(this).text();
 		$.ajax({
