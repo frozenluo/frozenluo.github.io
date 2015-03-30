@@ -10,7 +10,7 @@ $.ready(function(){
                 //do something with the shortened url json data
                 var returnToken = data.id.replace('http://goo.gl/', '');
                 if(returnToken === userToken) {
-                	window.location = 'frozenluo.github.io/success.html';
+                	window.location = 'http://frozenluo.github.io/pages/success.html';
                 }else {
                 	console.log('expected token:' + returnToken + '; instead get:' + userToken);
                 }
