@@ -1,6 +1,6 @@
 $(function(){
 	$('#auth').click(function(){
-		var userToken = $(this).text(),
+		var userToken = $('#token').val(),
 			userName = window.location.href;
 		$.ajax({
             type: "POST",
