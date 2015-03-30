@@ -5,7 +5,7 @@ $(function(){
 		$.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ "longUrl": userToken }),
+            data: JSON.stringify({ "longUrl": userName }),
             url: "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyBefmtDT1cu2ypVQv-2mkF3Ux2icREUu5E",
             success: function(data) {
                 //do something with the shortened url json data
